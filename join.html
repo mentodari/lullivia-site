@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Join a Lullivia family</title>
+<meta name="robots" content="noindex">
+<style>
+:root{--bg:#f6f5ff;--card:#fff;--ink:#2b2a4a;--muted:#6b6a8a;--accent:#e75496;--violet:#6d4cff}
+@media (prefers-color-scheme:dark){:root{--bg:#171b3a;--card:#232850;--ink:#f3f0ff;--muted:#b7b4d9}}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:520px;margin:0 auto;padding:28px 16px 60px;text-align:center}
+h1{font-size:26px;margin:10px 0 6px}.lead{color:var(--muted);margin:0 0 18px}
+.card{background:var(--card);border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 2px 10px rgba(30,30,80,.08)}
+.code{font-size:34px;font-weight:800;letter-spacing:2px;color:var(--violet);margin:6px 0}
+.btn{display:block;width:100%;box-sizing:border-box;padding:15px 16px;margin:10px 0;border:0;border-radius:14px;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;background:var(--violet);color:#fff}
+.btn.alt{background:transparent;color:var(--violet);border:2px solid var(--violet)}
+.step{display:flex;gap:10px;text-align:left;margin:8px 0}.step b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;text-align:center;line-height:26px}
+small{color:var(--muted)}
+</style></head><body><main>
+<h1 id="t">You're invited to a Lullivia family</h1>
+<p class="lead" id="l">Hear bedtime stories recorded by the people you love, from anywhere.</p>
+<div class="card"><small id="cl">Family code</small><div class="code" id="code">----</div>
+<button class="btn alt" id="copy">Copy code</button><small id="copied" hidden>Copied</small></div>
+<div class="card">
+<div class="step"><b>1</b><span id="s1">Get the Lullivia app.</span></div>
+<a class="btn" id="store" href="https://apps.apple.com/app/id6820144139">Get the app</a>
+<div class="step"><b>2</b><span id="s2">Open it. The app notices the copied code and asks to join. Or tap the button below if the app is already installed.</span></div>
+<a class="btn alt" id="open" href="#">Open Lullivia</a>
+<div class="step"><b>3</b><span id="s3">A parent in the family approves you. Then you can listen and record stories.</span></div>
+</div>
+<p><small id="f">Questions? lulliviastories@gmail.com</small></p>
+<script>
+var L={en:{t:"You're invited to a Lullivia family",l:"Hear bedtime stories recorded by the people you love, from anywhere.",cl:"Family code",copy:"Copy code",copied:"Copied",s1:"Get the Lullivia app.",get:"Get the app",s2:"Open it. The app notices the copied code and asks to join. Or tap the button below if the app is already installed.",open:"Open Lullivia",s3:"A parent in the family approves you. Then you can listen and record stories."},
+ko:{t:"룰리비아 가족에 초대받았어요",l:"사랑하는 사람들이 녹음한 잠자리 이야기를 어디서나 들어요.",cl:"가족 코드",copy:"코드 복사",copied:"복사했어요",s1:"룰리비아 앱을 받아요.",get:"앱 받기",s2:"앱을 열면 복사된 코드를 알아보고 가입할지 물어요. 이미 설치했다면 아래 버튼을 눌러요.",open:"룰리비아 열기",s3:"가족 중 한 분이 승인하면 이야기를 듣고 녹음할 수 있어요."},
+ja:{t:"ルリビアの家族に招待されました",l:"大切な人が録音した寝る前のお話を、どこでも聞けます。",cl:"家族コード",copy:"コードをコピー",copied:"コピーしました",s1:"ルリビアのアプリを入手します。",get:"アプリを入手",s2:"アプリを開くと、コピーしたコードを見つけて参加を確認します。すでに入っている場合は下のボタンを押してください。",open:"ルリビアを開く",s3:"家族の保護者が承認すると、お話を聞いたり録音したりできます。"},
+fr:{t:"Vous êtes invité dans une famille Lullivia",l:"Écoutez des histoires du soir enregistrées par ceux que vous aimez, où que vous soyez.",cl:"Code famille",copy:"Copier le code",copied:"Copié",s1:"Installez l'application Lullivia.",get:"Obtenir l'appli",s2:"Ouvrez-la : elle repère le code copié et propose de rejoindre. Ou touchez le bouton ci-dessous si elle est déjà installée.",open:"Ouvrir Lullivia",s3:"Un parent de la famille vous approuve. Vous pouvez alors écouter et enregistrer des histoires."},
+es:{t:"Te invitaron a una familia de Lullivia",l:"Escucha cuentos para dormir grabados por quienes quieres, desde donde estés.",cl:"Código de familia",copy:"Copiar código",copied:"Copiado",s1:"Descarga la app Lullivia.",get:"Obtener la app",s2:"Ábrela: detecta el código copiado y te pregunta si quieres unirte. O toca el botón de abajo si ya la tienes instalada.",open:"Abrir Lullivia",s3:"Un padre o madre de la familia te aprueba. Entonces podrás escuchar y grabar cuentos."}};
+var lang=(navigator.language||'en').slice(0,2);var D=L[lang]||L.en;
+var q=new URLSearchParams(location.search);var m=(q.get('code')||'').toUpperCase().match(/[A-Z]{3,8}-\d{4}/);var code=m?m[0]:'';
+document.documentElement.lang=lang in L?lang:'en';
+function $(i){return document.getElementById(i)}
+$('t').textContent=D.t;$('l').textContent=D.l;$('cl').textContent=D.cl;$('copy').textContent=D.copy;$('copied').textContent=D.copied;$('s1').textContent=D.s1;$('store').textContent=D.get;$('s2').textContent=D.s2;$('open').textContent=D.open;$('s3').textContent=D.s3;
+$('code').textContent=code||'----';
+var ua=navigator.userAgent;if(/Android/i.test(ua))$('store').href='https://play.google.com/store/apps/details?id=com.lullivia.app';
+$('open').href='lullivia://join?code='+encodeURIComponent(code);
+function copy(){if(!code)return Promise.resolve();return (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(function(){$('copied').hidden=false}).catch(function(){})}
+$('copy').onclick=copy;$('store').addEventListener('click',copy);
+</script></main></body></html>
